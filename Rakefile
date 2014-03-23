@@ -6,3 +6,5 @@ require File.expand_path('../config/application', __FILE__)
 Skysong::Application.load_tasks
 
 Rake::Task["db:structure:dump"].clear if Rails.env.production?
+
+
