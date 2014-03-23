@@ -1,4 +1,27 @@
+
+
 $ ->
+  $(window).on('beforeunload', ->
+    $.ajax(
+      async: false
+      url: '/check_connect'
+      type: 'GET'
+      dataType: 'json'
+    )
+    .done (response) ->
+      if response.channel != 2 ||
+      (response.channel == 2 && window.location.pathname == '/chat')
+        $.ajax(
+          async: false
+          url: '/clear_session'
+          type: 'GET'
+          dataType: 'json'
+        )
+        .done (response) ->
+          response.msg
+    return
+  )
+
   if window.location.pathname == '/chat'
     setInterval(->
       $.ajax(
@@ -9,8 +32,15 @@ $ ->
       .done (response) ->
         if response.channel == 0
           alert response.channel
-          window.location = "/"
+          $.ajax(
+            url: '/clear_session'
+            type: 'GET'
+            dataType: 'json'
+          )
+          .done ->
+            window.location = "/"
     , 2000)
+
 
   $("#disconnect").click ->
     $.ajax(

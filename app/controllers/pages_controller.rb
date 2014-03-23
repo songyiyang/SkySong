@@ -44,4 +44,19 @@ class PagesController < ApplicationController
       render json: {"channel" => 2}
     end
   end
+
+  def clear_session
+    current_user.check = 0
+    current_user.save!
+    channel_con = Channel.where("(user_1 = #{current_user.id} OR user_2 = #{current_user.id}) AND (channel = 2 OR channel = 1)")
+    if channel_con == []
+      render json: {"msg" => "no current"}
+    else
+      channel = channel_con.first
+      channel.channel = 0
+      channel.save!
+      render json: {"msg" => 'cleared!'}
+    end
+  end
+
 end
