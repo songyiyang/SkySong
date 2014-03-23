@@ -17,6 +17,9 @@ gem 'bootstrap-sass'
 gem 'flat-ui-rails'
 gem 'jquery-ui-rails'
 
+gem "private_pub"
+gem "thin"
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-nav'

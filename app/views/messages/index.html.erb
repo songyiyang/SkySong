@@ -1,0 +1,19 @@
+<h1>Chat</h1>
+
+<ul id="chat">
+</ul>
+
+<%= form_for Message.new, remote: true do |f| %>
+  <%= f.text_field :content %>
+  <%= f.submit "Send" %>
+<% end %>
+
+<div id="subscribe">
+  <% if @channel_num %>
+    <%= subscribe_to "/messages/#{@channel_num}" %>
+  <% end %>
+</div>
+
+
+<button id="disconnect">Disconnect</button>
+
