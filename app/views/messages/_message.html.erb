@@ -1,4 +1,6 @@
-<li>
+<li id="chat-li">
+  <% color = (current_user.id == @channel_num.split("_")[0].to_i) ? "#2980b9" : "#1abc9c" %>
   <span class="created_at"><%= Time.now.strftime("%H:%M") %></span>
-  <%= message.content %>
+  <span style ="color:<%= color %>">@Skyer<%=current_user.id %> : </span>
+  <span id="chat-msg" style="color:<%= color %>"><%= message.content %></span>
 </li>

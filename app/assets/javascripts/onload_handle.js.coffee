@@ -9,8 +9,8 @@ $ ->
       dataType: 'json'
     )
     .done (response) ->
-      if response.channel != 2 ||
-      (response.channel == 2 && window.location.pathname == '/chat')
+      if response.msg != "Connected!" ||
+      (response.msg == "Connected!" && window.location.pathname == '/chat')
         $.ajax(
           async: false
           url: '/clear_session'
@@ -30,8 +30,8 @@ $ ->
         dataType: 'json'
       )
       .done (response) ->
-        if response.channel == 0
-          alert response.channel
+        if response.msg == "Disconnected!"
+          SkySong.Msg.drawMsg(response.msg, '.alert')
           $.ajax(
             url: '/clear_session'
             type: 'GET'
@@ -58,7 +58,7 @@ $ ->
       dataType: 'json'
     )
     .done (response) ->
-      alert response.channel
+      SkySong.Msg.drawMsg(response.msg, '.notice')
       if response.channel == 2
         window.location = "chat"
       else
@@ -69,8 +69,8 @@ $ ->
             dataType: 'json'
           )
           .done (response) ->
-            alert response.channel
-            if response.channel == 2
+            if response.msg == "Connected!"
+              SkySong.Msg.drawMsg(response.msg, '.alert')
               window.location = "chat"
         , 2000)
 
