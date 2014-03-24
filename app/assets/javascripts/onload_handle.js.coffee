@@ -1,43 +1,53 @@
 $ ->
-  # $(window).on('beforeunload', ->
-  #   $.ajax(
-  #     async: false
-  #     url: '/check_connect'
-  #     type: 'GET'
-  #     dataType: 'json'
-  #   )
-  #   .done (response) ->
-  #     if response.msg != "Connected!" ||
-  #     (response.msg == "Connected!" && window.location.pathname == '/chat')
-  #       $.ajax(
-  #         async: false
-  #         url: '/clear_session'
-  #         type: 'GET'
-  #         dataType: 'json'
-  #       )
-  #       .done (response) ->
-  #         response.msg
-  #   return
-  # )
+  $(window).on('beforeunload', ->
+    $.ajax(
+      async: false
+      url: '/check_connect'
+      type: 'GET'
+      dataType: 'json'
+    )
+    .done (response) ->
+      if response.msg != "Connected!" ||
+      (response.msg == "Connected!" && window.location.pathname == '/chat')
+        $.ajax(
+          async: false
+          url: '/clear_session'
+          type: 'GET'
+          dataType: 'json'
+        )
+        .done (response) ->
+          response.msg
+    return
+  )
 
-  # if window.location.pathname == '/chat'
-  #   setInterval(->
-  #     $.ajax(
-  #       url: '/check_connect'
-  #       type: 'GET'
-  #       dataType: 'json'
-  #     )
-  #     .done (response) ->
-  #       if response.msg == "Disconnected!"
-  #         SkySong.Msg.drawMsg(response.msg, '.alert')
-  #         $.ajax(
-  #           url: '/clear_session'
-  #           type: 'GET'
-  #           dataType: 'json'
-  #         )
-  #         .done ->
-  #           window.location = "/"
-  #   , 2000)
+  if window.location.pathname == '/chat'
+    setInterval(->
+      $.ajax(
+        url: '/check_connect'
+        type: 'GET'
+        dataType: 'json'
+      )
+      .done (response) ->
+        if response.msg == "Disconnected!"
+          SkySong.Msg.drawMsg(response.msg, '.alert')
+          $.ajax(
+            url: '/clear_session'
+            type: 'GET'
+            dataType: 'json'
+          )
+          .done ->
+            window.location = "/"
+    , 2000)
+  $("#hide-controls").hide()
+  $("#controls").hide()
+  $("#show-controls").click ->
+    $("#controls").show()
+    $("#show-controls").hide()
+    $("#hide-controls").show()
+  $("#hide-controls").click ->
+    $("#controls").hide()
+    $("#hide-controls").hide()
+    $("#show-controls").show()
 
 
   $("#disconnect").click ->
@@ -134,8 +144,8 @@ $ ->
         type: 'GET'
         dataType: 'json'
         data:
-          line_to: [e.offsetX, e.offsetY]
-          prev: [prevX, prevY]
+          line_to: [(e.offsetX/2), (e.offsetY/2.5)]
+          prev: [(prevX/2), (prevY/2.5)]
           line_width: penSize
           line_color: penColor
       )

@@ -137,3 +137,61 @@ canvas {
 .alert {
   background-color: #e74c3c;
 }
+
+.send-btn {
+  background-color: #2980b9;
+  width: 100px;
+}
+
+
+#chat-stuff {
+  display:inline-block;
+  margin-top: 50px;
+  position:absolute;
+  margin-left:auto;
+  #chat{
+    width:140%;
+    height:300px;
+  }
+}
+#disconnect {
+  float:right;
+  top:0;
+}
+
+#sharedCanvas {
+  position:fixed;
+  right:15%;
+  list-style-type:none;
+  li{
+    canvas{
+      width:350px;
+      height:200px;
+    }
+  }
+}
+
+#input-form{
+  width:400px;
+  height:60px;
+}
+
+#draw {
+  float:left;
+  margin-top:500px;
+  canvas{
+    width:700px;
+    height:500px;
+  }
+}
+#buttons{
+  #clear{
+    background-color:#c0392b;
+  }
+  #hide-controls{
+    background-color:#7f8c8d;
+  }
+  #show-controls{
+    background-color: #27ae60;
+  }
+}

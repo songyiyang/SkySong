@@ -1,35 +1,51 @@
-<h1>Chat</h1>
+<button id="disconnect" class='btn disconnect-btn'>Disconnect</button>
 
-<ul id="chat">
+<div id='chat-stuff'>
+  <h1>Chat</h1>
+  <ul id="chat">
+  </ul>
+  <h4>you can check out anytime you like, but you can never back</h4>
+
+  <div id='form-for'>
+  <%= form_for Message.new, remote: true do |f| %>
+    <%= f.text_field :content, :id => 'input-form' %>
+    <%= f.submit "Send", :class => 'btn send-btn' %>
+  <% end %>
+  </div>
+</div>
+
+<ul id="sharedCanvas">
+  <h1>Outputs</h1>
+  <li><canvas id="sharedCanvas1" width="350" height="200"></canvas></li>
+  <li><canvas id="sharedCanvas2" width="350" height="200"></canvas></li>
 </ul>
-<h4>you can check out anytime you like, but you can never back</h4>
-<%= form_for Message.new, remote: true do |f| %>
-  <%= f.text_field :content %>
-  <%= f.submit "Send" %>
-<% end %>
-<div id='controls'>
-  <div id='pen-color' class='inline'>
-    <ul id='colors'>
-      <li id='tomato'></li>
-      <li id='#1abc9c' class='turquoise'></li>
-      <li id='#34495e' class='wetasphalt'></li>
-      <li id="#bdc3c7" class='silver'></li>
-      <li id='#2980b9' class='belizehole'></li>
-      <li id='orange'></li>
-      <li id='#f1c40f' class='sunflower'></li>
-    </ul>
+
+<div id="draw">
+  <h1>Draw</h1>
+  <canvas id="myCanvas" width="700" height="500"></canvas>
+  <div id="buttons">
+    <button id="clear" class='btn clear-btn'>Clear</button>
+    <button id="hide-controls" class="btn controls-btn">Hide</button>
+    <button id="show-controls" class="btn controls-btn">Show Controls</button>
   </div>
-  <div id='pen-size' class='inline'>
-    <div id='pen' class='inline'><span id='size-preview' class='inline'></span></div>
-    <input type='range' min='2' max='40' step='5' class='inline' id='size-slider'>
+  <div id='controls'>
+    <div id='pen-color' class='inline'>
+      <ul id='colors'>
+        <li id='tomato'></li>
+        <li id='#1abc9c' class='turquoise'></li>
+        <li id='#34495e' class='wetasphalt'></li>
+        <li id="#bdc3c7" class='silver'></li>
+        <li id='#2980b9' class='belizehole'></li>
+        <li id='orange'></li>
+        <li id='#f1c40f' class='sunflower'></li>
+      </ul>
+    </div>
+    <div id='pen-size' class='inline'>
+      <div id='pen' class='inline'><span id='size-preview' class='inline'></span></div>
+      <input type='range' min='2' max='40' step='5' class='inline' id='size-slider'>
+    </div>
   </div>
 </div>
-<div id="sharedCanvas">
-<canvas id="sharedCanvas1" width="400" height="300"></canvas>
-<canvas id="sharedCanvas2" width="400" height="300"></canvas>
-</div>
-<canvas id="myCanvas" width="400" height="300"></canvas>
-<button id="clear" class='btn clear-btn'>Clear</button>
 
 <div id="subscribe">
   <% if @channel_num %>
@@ -39,7 +55,4 @@
     <%= subscribe_to "/clear/2" %>
   <% end %>
 </div>
-
-
-<button id="disconnect">Disconnect</button>
 
