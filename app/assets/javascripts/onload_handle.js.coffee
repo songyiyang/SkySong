@@ -119,14 +119,6 @@ $ ->
     prevY = e.offsetY
     context.beginPath()
     context.moveTo e.offsetX, e.offsetY
-    $.ajax(
-      url: '/publish'
-      type: 'GET'
-      dataType: 'json'
-      data:
-        line_to: [e.offsetX, e.offsetY]
-        active: 0
-    )
     false
 
   canvas.onmousemove = (e) ->
@@ -137,18 +129,18 @@ $ ->
       context.lineCap = "round"
       context.strokeStyle = penColor
       context.stroke()
-      prevX = e.offsetX
-      prevY = e.offsetY
       $.ajax(
         url: '/publish'
         type: 'GET'
         dataType: 'json'
         data:
           line_to: [e.offsetX, e.offsetY]
-          active: 1
+          prev: [prevX, prevY]
           line_width: penSize
           line_color: penColor
       )
+      prevX = e.offsetX
+      prevY = e.offsetY
     context.beginPath()
     context.moveTo e.offsetX, e.offsetY
     false
@@ -156,16 +148,25 @@ $ ->
   canvas.onmouseup = (e) ->
     e.preventDefault()
     dragging = false
-    context.lineTo e.offsetX, e.offsetY
-    context.lineWidth = 8
-    context.lineCap = "round"
-    context.strokeStyle = "red"
-    context.stroke()
+    # context.lineTo e.offsetX, e.offsetY
+    # context.lineWidth = 8
+    # context.lineCap = "round"
+    # context.strokeStyle = "red"
+    # context.stroke()
     false
 
 
   # bind event handler to clear button
   document.getElementById("clear").addEventListener "click", (->
     context.clearRect 0, 0, canvas.width, canvas.height
+    $.ajax(
+      url: '/clear'
+      type: 'GET'
+      dataType: 'json'
+    )
+    .done (response) ->
+      theCanvas = document.getElementById("sharedCanvas#{response.canvas}")
+      context = theCanvas.getContext("2d")
+      context.clearRect 0, 0, theCanvas.width, theCanvas.height
     return
   ), false

@@ -1,21 +1,19 @@
 <% if @channel_num %>
   <% publish_to "/chat/#{@channel_num}" do %>
-    
-    <% if @active == "0" %>
-      var canvas = document.getElementById('myCanvas'),
-          context = canvas.getContext('2d');
-      context.beginPath();
-      context.moveTo(<%=@line_to[0]%>, <%=@line_to[1]%>);
-    <% elsif @active == "1" %>
-      // var canvas = document.getElementById('myCanvas'),
-      //     context = canvas.getContext('2d');
-      // context.beginPath();
-      // context.moveTo(25, 25);
-      context.lineTo(<%=@line_to[0] %>, <%=@line_to[1]%>);
-      context.lineWidth = <%=@line_width %>
-      context.lineCap = "round"
-      context.strokeStyle = "<%= @line_color %>"
-      context.stroke();
+    <% if current_user.id == @channel_num.split("_")[0].to_i %>
+        var canvas = document.getElementById('sharedCanvas1');
+    <% else %>
+        var canvas = document.getElementById('sharedCanvas2');
     <% end %>
+    var context = canvas.getContext('2d');
+    context.beginPath();
+    context.moveTo(<%=@prev[0]%>, <%=@prev[1]%>);
+    context.lineTo(<%=@line_to[0] %>, <%=@line_to[1]%>);
+    context.lineWidth = <%=@line_width %>
+    context.lineCap = "round"
+    context.strokeStyle = "<%= @line_color %>"
+    context.stroke();
+    context.beginPath();
+    context.moveTo(<%=@line_to[0] %>, <%=@line_to[1]%>);
   <% end %>
 <% end %>

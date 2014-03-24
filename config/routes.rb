@@ -7,5 +7,6 @@ Skysong::Application.routes.draw do
   get '/check_connect', to: 'pages#check_connect'
   get '/clear_session', to: 'pages#clear_session'
   get '/publish', to: 'pages#publish'
+  get '/clear', to: 'pages#clear'
   resources :messages
 end

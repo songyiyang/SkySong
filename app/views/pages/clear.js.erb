@@ -1,0 +1,13 @@
+<% if current_user.id == @channel_num.split("_")[0].to_i %>
+  <% publish_to "/clear/1" do %>
+    var canvas = document.getElementById('sharedCanvas1');
+    var context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+  <% end %>
+<% else %>
+  <% publish_to "/clear/2" do %>
+    var canvas = document.getElementById('sharedCanvas2');
+    var context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+  <% end %>
+<% end %>
