@@ -7,12 +7,29 @@
   <%= f.text_field :content %>
   <%= f.submit "Send" %>
 <% end %>
-
+<div id='controls'>
+  <div id='pen-color' class='inline'>
+    <ul id='colors'>
+      <li id='tomato'></li>
+      <li id='#1abc9c' class='turquoise'></li>
+      <li id='#34495e' class='wetasphalt'></li>
+      <li id="#bdc3c7" class='silver'></li>
+      <li id='#2980b9' class='belizehole'></li>
+      <li id='orange'></li>
+      <li id='#f1c40f' class='sunflower'></li>
+    </ul>
+  </div>
+  <div id='pen-size' class='inline'>
+    <div id='pen' class='inline'><span id='size-preview' class='inline'></span></div>
+    <input type='range' min='2' max='40' step='5' class='inline' id='size-slider'>
+  </div>
+</div>
+<div id="sharedCanvas">
 <canvas id="sharedCanvas1" width="400" height="300"></canvas>
 <canvas id="sharedCanvas2" width="400" height="300"></canvas>
-
+</div>
 <canvas id="myCanvas" width="400" height="300"></canvas>
-<button id="clear">Clear</button>
+<button id="clear" class='btn clear-btn'>Clear</button>
 
 <div id="subscribe">
   <% if @channel_num %>
