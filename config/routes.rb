@@ -6,5 +6,6 @@ Skysong::Application.routes.draw do
   get '/chat', to: 'messages#index'
   get '/check_connect', to: 'pages#check_connect'
   get '/clear_session', to: 'pages#clear_session'
+  get '/publish', to: 'pages#publish'
   resources :messages
 end

@@ -60,4 +60,14 @@ class PagesController < ApplicationController
     end
   end
 
+  def publish
+    channel_con = Channel.where("(user_1 = #{current_user.id} OR user_2 = #{current_user.id}) AND channel = 2").first
+    @channel_num = "#{channel_con.user_1}_#{channel_con.user_2}"
+    @active = params[:active]
+    @line_to = params[:line_to]
+    @line_width = params[:line_width]
+    @line_color = params[:line_color]
+    PrivatePub.publish_to("/chat/#{@channel_num}", "")
+  end
+
 end

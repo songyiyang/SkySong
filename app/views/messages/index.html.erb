@@ -8,9 +8,13 @@
   <%= f.submit "Send" %>
 <% end %>
 
+<canvas id="myCanvas" width="400" height="300"></canvas>
+<button id="clear">Clear</button>
+
 <div id="subscribe">
   <% if @channel_num %>
     <%= subscribe_to "/messages/#{@channel_num}" %>
+    <%= subscribe_to "/chat/#{@channel_num}" %>
   <% end %>
 </div>
 

@@ -1,0 +1,21 @@
+<% if @channel_num %>
+  <% publish_to "/chat/#{@channel_num}" do %>
+    
+    <% if @active == "0" %>
+      var canvas = document.getElementById('myCanvas'),
+          context = canvas.getContext('2d');
+      context.beginPath();
+      context.moveTo(<%=@line_to[0]%>, <%=@line_to[1]%>);
+    <% elsif @active == "1" %>
+      // var canvas = document.getElementById('myCanvas'),
+      //     context = canvas.getContext('2d');
+      // context.beginPath();
+      // context.moveTo(25, 25);
+      context.lineTo(<%=@line_to[0] %>, <%=@line_to[1]%>);
+      context.lineWidth = <%=@line_width %>
+      context.lineCap = "round"
+      context.strokeStyle = "<%= @line_color %>"
+      context.stroke();
+    <% end %>
+  <% end %>
+<% end %>
