@@ -149,6 +149,7 @@ canvas {
   margin-top: 50px;
   position:absolute;
   margin-left:auto;
+  left:30px;
   #chat{
     width:140%;
     height:300px;
@@ -163,12 +164,6 @@ canvas {
   position:fixed;
   right:15%;
   list-style-type:none;
-  li{
-    canvas{
-      width:350px;
-      height:200px;
-    }
-  }
 }
 
 #input-form{
@@ -179,10 +174,12 @@ canvas {
 #draw {
   float:left;
   margin-top:500px;
-  canvas{
-    width:700px;
-    height:500px;
-  }
+  bottom:0;
+  margin-left:30px;
+
+}
+#myCanvas{
+  cursor: image-url("Pencil.cur"), auto;
 }
 #buttons{
   #clear{
@@ -194,4 +191,18 @@ canvas {
   #show-controls{
     background-color: #27ae60;
   }
+}
+
+#chat-msg {
+  font-size:18px;
+}
+
+.skyer {
+  font-style:italic;
+  cursor:default;
+}
+
+#skyerId {
+  color:#e74c3c;
+  font-style:italic;
 }

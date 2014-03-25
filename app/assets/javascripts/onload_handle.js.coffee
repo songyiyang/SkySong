@@ -151,9 +151,9 @@ $ ->
         type: 'GET'
         dataType: 'json'
         data:
-          line_to: [(event.offsetX/2), (event.offsetY/2.5)]
-          prev: [(prevX/2), (prevY/2.5)]
-          line_width: penSize
+          line_to: [(event.offsetX/2), (event.offsetY/2)]
+          prev: [(prevX/2), (prevY/2)]
+          line_width: penSize/2
           line_color: penColor
       )
       prevX = event.offsetX
