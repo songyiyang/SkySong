@@ -89,6 +89,11 @@ $ ->
     $("#chat").animate({scrollTop: $("#chat")[0].scrollHeight}, 1000)
     )
 
+  checkOffset = (event) ->
+    unless event.hasOwnProperty("offsetX")
+      event.offsetX = event.layerX - event.currentTarget.offsetLeft
+      event.offsetY = event.layerY - event.currentTarget.offsetTop
+
   penColor = "tomato"
   penSize = 5
   setPenColor = (event) ->
@@ -122,19 +127,21 @@ $ ->
     $("#canvas-input").val ""
     false
 
-  canvas.onmousedown = (e) ->
-    e.preventDefault()
+  canvas.onmousedown = (event) ->
+    event.preventDefault()
+    checkOffset event
     dragging = true
-    prevX = e.offsetX
-    prevY = e.offsetY
+    prevX = event.offsetX
+    prevY = event.offsetY
     context.beginPath()
-    context.moveTo e.offsetX, e.offsetY
+    context.moveTo event.offsetX, event.offsetY
     false
 
-  canvas.onmousemove = (e) ->
-    e.preventDefault()
+  canvas.onmousemove = (event) ->
+    event.preventDefault()
+    checkOffset event
     if dragging is true
-      context.lineTo e.offsetX, e.offsetY
+      context.lineTo event.offsetX, event.offsetY
       context.lineWidth = penSize
       context.lineCap = "round"
       context.strokeStyle = penColor
@@ -144,21 +151,22 @@ $ ->
         type: 'GET'
         dataType: 'json'
         data:
-          line_to: [(e.offsetX/2), (e.offsetY/2.5)]
+          line_to: [(event.offsetX/2), (event.offsetY/2.5)]
           prev: [(prevX/2), (prevY/2.5)]
           line_width: penSize
           line_color: penColor
       )
-      prevX = e.offsetX
-      prevY = e.offsetY
+      prevX = event.offsetX
+      prevY = event.offsetY
     context.beginPath()
-    context.moveTo e.offsetX, e.offsetY
+    context.moveTo event.offsetX, event.offsetY
     false
 
-  canvas.onmouseup = (e) ->
-    e.preventDefault()
+  canvas.onmouseup = (event) ->
+    event.preventDefault()
+    checkOffset event
     dragging = false
-    # context.lineTo e.offsetX, e.offsetY
+    # context.lineTo event.offsetX, event.offsetY
     # context.lineWidth = 8
     # context.lineCap = "round"
     # context.strokeStyle = "red"

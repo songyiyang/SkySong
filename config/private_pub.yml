@@ -1,8 +1,8 @@
 development:
-  # server: "http://yysfayserver.herokuapp.com/faye"
-  # secret_token: "a78bad7dbd346ab22a5485cda814e5f592ab9eddbb54410e7f1d2fd4bba4d1a3"
-  server: "http://localhost:9292/faye"
-  secret_token: "secret"
+  server: "http://yysfayserver.herokuapp.com/faye"
+  secret_token: "a78bad7dbd346ab22a5485cda814e5f592ab9eddbb54410e7f1d2fd4bba4d1a3"
+  #server: "http://localhost:9292/faye"
+  #secret_token: "secret"
 test:
   server: "http://localhost:9292/faye"
   secret_token: "secret"
