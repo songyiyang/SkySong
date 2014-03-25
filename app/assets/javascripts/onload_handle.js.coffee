@@ -21,6 +21,15 @@ $ ->
   )
 
   if window.location.pathname == '/chat'
+    if ($('#draw').position().left + 700) > $('#sharedCanvas').position().left
+      $('#sharedCanvas').hide()
+    $(window).resize ->
+      if (($('#draw').position().left + 700) > $('#sharedCanvas').position().left) && $(window).width() < 1288
+        $('#sharedCanvas').hide()
+      else
+        $('#sharedCanvas').show()
+
+  if window.location.pathname == '/chat'
     setInterval(->
       $.ajax(
         url: '/check_connect'
