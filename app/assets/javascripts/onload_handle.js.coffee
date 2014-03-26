@@ -39,15 +39,17 @@ $ ->
       $("#img-stuff").css("background-image", "url('http://imgs.xkcd.com/comics/mattress.png')")
 
   $("#send-img").click ->
-    canvas = document.getElementById("myCanvas")
-    image = new Image()
-    image.src = canvas.toDataURL("image/png")
+    canvas1 = document.getElementById("sharedCanvas1")
+    canvas2 = document.getElementById("sharedCanvas2")
+    image1 = canvas1.toDataURL("image/png")
+    image2 = canvas2.toDataURL("image/png")
     $.ajax(
       url: '/send_img'
       type: 'post'
       dataType: 'json'
       data:
-        image: image.src
+        image_1: image1
+        image_2: image2
     )
     .done (response) ->
       SkySong.Msg.drawMsg(response.msg, '.alert', 'green')

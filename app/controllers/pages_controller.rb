@@ -96,15 +96,19 @@ class PagesController < ApplicationController
   end
 
   def send_img
-    data = params[:image]
-    image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
-    File.open("#{Rails.root}/public/uploads/somefilename.png", 'wb') do |f|
-      f.write image_data
+    data_1 = params[:image_1]
+    data_2 = params[:image_2]
+    image_data_1 = Base64.decode64(data_1['data:image/png;base64,'.length .. -1])
+    image_data_2 = Base64.decode64(data_2['data:image/png;base64,'.length .. -1])
+    File.open("#{Rails.root}/public/uploads/image_1.png", 'wb') do |f|
+      f.write image_data_1
     end
-    #html_stuff = "<h1>Link</h1><p>#{params[:image]}</p>"#"<img src='#{params[:image]}' alt='img'/>"
-    binding.pry
-    Pony.mail(to: current_user.email, subject: "Sky Song Images!", :headers => { 'Content-Type' => 'text/html' }, :attachments => {"somefilename.png" => File.read("#{Rails.root}/public/uploads/somefilename.png")})
-    render json: {:msg => "Success!", :img => html_stuff}
+    File.open("#{Rails.root}/public/uploads/image_2.png", 'wb') do |f|
+      f.write image_data_2
+    end
+    @email = current_user.email
+    Notifier.send_image(@email).deliver
+    render json: {:msg => "Success!"}
   end
 
 end
