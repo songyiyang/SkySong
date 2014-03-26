@@ -64,9 +64,11 @@ $ ->
       $(".send-btn").css("background", "#{response.color}")
       if response.color == "#1abc9c"
         color = "Greener"
+        $("#title-msg").css("color", "green")
       else
         color = "Bluer"
-      $("#chat-msg").text("#{color}: you can check out anytime you like, but you can never back!")
+        $("#title-msg").css("color", "blue")
+      $("#title-msg").text("#{color}: ")
 
     setInterval(->
       $.ajax(
@@ -132,8 +134,12 @@ $ ->
         , 2000)
 
 
-
   $('#chat').bind('DOMNodeInserted', (event) ->
+    name = if event.target.getElementsByClassName("skyer_1").length == 0 then event.target.getElementsByClassName("skyer_2") else event.target.getElementsByClassName("skyer_1")
+    if $("#myCanvas").css("border-color") == "rgb(41, 128, 185)" && name[0].innerText != "You : " && name[0].getAttribute("class") == "skyer_1"
+      name[0].innerText = "You : "
+    else if $("#myCanvas").css("border-color") == "rgb(26, 188, 156)" && name[0].innerText != "You : " && name[0].getAttribute("class") == "skyer_2"
+      name[0].innerText = "You : "
     $("#chat").animate({scrollTop: $("#chat")[0].scrollHeight}, 1000)
     )
 
