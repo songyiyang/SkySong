@@ -20,6 +20,21 @@ $ ->
     return
   )
 
+  if $(window).width() < 750
+    wid = $(window).width()-80
+    $("#chat").css("width", wid)
+    $("#input-form").css("width", wid-200)
+
+  if window.location.pathname == '/'
+    $("#img-stuff").empty
+    $.ajax(
+      url: "/xkcd"
+      type: 'GET'
+      dataType: 'json'
+    )
+    .done (response) ->
+      $("#img-stuff").css("background-image", "url('http://imgs.xkcd.com/comics/mattress.png')")
+
   if window.location.pathname == '/chat'
     if ($('#draw').position().left + 700) > $('#sharedCanvas').position().left
       $('#sharedCanvas').hide()
@@ -28,8 +43,31 @@ $ ->
         $('#sharedCanvas').hide()
       else
         $('#sharedCanvas').show()
+      if $(window).width() < 750
+        wid = $(window).width()-80
+        $("#chat").css("width", wid)
+        $("#input-form").css("width",$(window).width()-280)
+      else
+        $("#chat").css("width", "100%")
 
   if window.location.pathname == '/chat'
+    $.ajax(
+      url: '/color_diff'
+      type: 'GET'
+      dataType: 'json'
+    )
+    .done (response) ->
+      color = ""
+      $("#chat").css("border", "2px solid #{response.color}")
+      $("#myCanvas").css("border", "2px solid #{response.color}")
+      $("#input-form").css("border", "2px solid #{response.color}")
+      $(".send-btn").css("background", "#{response.color}")
+      if response.color == "#1abc9c"
+        color = "Greener"
+      else
+        color = "Bluer"
+      $("#chat-msg").text("#{color}: you can check out anytime you like, but you can never back!")
+
     setInterval(->
       $.ajax(
         url: '/check_connect'
@@ -47,16 +85,17 @@ $ ->
           .done ->
             window.location = "/"
     , 2000)
-  $("#hide-controls").hide()
-  $("#controls").hide()
-  $("#show-controls").click ->
-    $("#controls").show()
-    $("#show-controls").hide()
-    $("#hide-controls").show()
-  $("#hide-controls").click ->
-    $("#controls").hide()
     $("#hide-controls").hide()
-    $("#show-controls").show()
+    $("#controls").hide()
+    $("#show-controls").click ->
+      $("#controls").show()
+      $("#show-controls").hide()
+      $("#hide-controls").show()
+      $("html, body").animate({ scrollTop: $(document).height() }, "slow")
+    $("#hide-controls").click ->
+      $("#controls").hide()
+      $("#hide-controls").hide()
+      $("#show-controls").show()
 
 
   $("#disconnect").click ->
@@ -116,84 +155,73 @@ $ ->
       width: penSize
       height: penSize
 
-    return
+  if window.location.pathname == '/chat'
+    $("#colors").click setPenColor
+    $("#size-slider").mouseup setPenSize
+    canvas = document.getElementById("myCanvas")
+    context = canvas.getContext("2d")
+    dragging = false
+    prevX = undefined
+    prevY = undefined
 
-  $("#colors").click setPenColor
-  $("#size-slider").mouseup setPenSize
-  canvas = document.getElementById("myCanvas")
-  context = canvas.getContext("2d")
-  imageObj = new Image()
-  dragging = false
-  prevX = undefined
-  prevY = undefined
-  imageObj.onload = ->
-    context.drawImage imageObj, 0, 0, 900, 550
-    return
-
-  $("#canvas-button").click (event) ->
-    event.preventDefault()
-    imageObj.src = $("#canvas-input").val()
-    $("#canvas-input").val ""
-    false
-
-  canvas.onmousedown = (event) ->
-    event.preventDefault()
-    checkOffset event
-    dragging = true
-    prevX = event.offsetX
-    prevY = event.offsetY
-    context.beginPath()
-    context.moveTo event.offsetX, event.offsetY
-    false
-
-  canvas.onmousemove = (event) ->
-    event.preventDefault()
-    checkOffset event
-    if dragging is true
-      context.lineTo event.offsetX, event.offsetY
-      context.lineWidth = penSize
-      context.lineCap = "round"
-      context.strokeStyle = penColor
-      context.stroke()
-      $.ajax(
-        url: '/publish'
-        type: 'GET'
-        dataType: 'json'
-        data:
-          line_to: [(event.offsetX/2), (event.offsetY/2)]
-          prev: [(prevX/2), (prevY/2)]
-          line_width: penSize/2
-          line_color: penColor
-      )
+    canvas.onmousedown = (event) ->
+      event.preventDefault()
+      checkOffset event
+      dragging = true
       prevX = event.offsetX
       prevY = event.offsetY
-    context.beginPath()
-    context.moveTo event.offsetX, event.offsetY
-    false
+      context.beginPath()
+      context.moveTo event.offsetX, event.offsetY
+      false
 
-  canvas.onmouseup = (event) ->
-    event.preventDefault()
-    checkOffset event
-    dragging = false
-    # context.lineTo event.offsetX, event.offsetY
-    # context.lineWidth = 8
-    # context.lineCap = "round"
-    # context.strokeStyle = "red"
-    # context.stroke()
-    false
+    canvas.onmousemove = (event) ->
+      event.preventDefault()
+      checkOffset event
+      if dragging is true
+        context.lineTo event.offsetX, event.offsetY
+        context.lineWidth = penSize
+        context.lineCap = "round"
+        context.strokeStyle = penColor
+        context.stroke()
+        $.ajax(
+          url: '/publish'
+          type: 'GET'
+          dataType: 'json'
+          data:
+            line_to: [(event.offsetX/2), (event.offsetY/2)]
+            prev: [(prevX/2), (prevY/2)]
+            line_width: penSize/2
+            line_color: penColor
+        )
+        prevX = event.offsetX
+        prevY = event.offsetY
+      context.beginPath()
+      context.moveTo event.offsetX, event.offsetY
+      false
+
+    canvas.onmouseup = (event) ->
+      event.preventDefault()
+      checkOffset event
+      dragging = false
+      # context.lineTo event.offsetX, event.offsetY
+      # context.lineWidth = 8
+      # context.lineCap = "round"
+      # context.strokeStyle = "red"
+      # context.stroke()
+      false
 
 
-  # bind event handler to clear button
-  document.getElementById("clear").addEventListener "click", (->
-    context.clearRect 0, 0, canvas.width, canvas.height
-    $.ajax(
-      url: '/clear'
-      type: 'GET'
-      dataType: 'json'
-    )
-    .done (response) ->
-      theCanvas = document.getElementById("sharedCanvas#{response.canvas}")
-      context = theCanvas.getContext("2d")
-      context.clearRect 0, 0, theCanvas.width, theCanvas.height
-    return
-  ), false
+    # bind event handler to clear button
+    document.getElementById("clear").addEventListener "click", (->
+      context.clearRect 0, 0, canvas.width, canvas.height
+      $.ajax(
+        url: '/clear'
+        type: 'GET'
+        dataType: 'json'
+      )
+      .done (response) ->
+        theCanvas = document.getElementById("sharedCanvas#{response.canvas}")
+        context = theCanvas.getContext("2d")
+        context.clearRect 0, 0, theCanvas.width, theCanvas.height
+      return
+    ), false

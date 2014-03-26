@@ -81,4 +81,18 @@ class PagesController < ApplicationController
     end
   end
 
+  def xkcd
+    render json: { :url => XKCD.img.split().last() }
+  end
+
+  def color
+    channel_con = Channel.where("(user_1 = #{current_user.id} OR user_2 = #{current_user.id}) AND channel = 2").first
+    @channel_num = "#{channel_con.user_1}_#{channel_con.user_2}"
+    if current_user.id == @channel_num.split("_")[0].to_i
+      render json: {:color => "#2980b9"}
+    else
+      render json: {:color => "#1abc9c"}
+    end
+  end
+
 end

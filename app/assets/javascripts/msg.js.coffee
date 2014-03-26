@@ -4,7 +4,6 @@ class SkySong.Msg
     if message != "waiting..."
       $(classType).fadeIn('fast')
     else
-      $(classType).css("background-color", "black")
       $(classType).fadeIn('fast')
     # if classType == '.notice'
     #   $(classType).delay(2000).fadeOut('slow')

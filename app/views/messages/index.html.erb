@@ -4,7 +4,7 @@
   <h1>Chat</h1>
   <ul id="chat">
   </ul>
-  <h4>you can check out anytime you like, but you can never back</h4>
+  <h4 id="chat-msg">you can check out anytime you like, but you can never back</h4>
 
   <div id='form-for'>
   <%= form_for Message.new, remote: true do |f| %>
@@ -16,7 +16,7 @@
 
 <div id="draw">
   <h1>Draw</h1>
-  <canvas id="myCanvas" width="700" height="500"></canvas>
+  <canvas id="myCanvas" width="700" height="350"></canvas>
   <div id="buttons">
     <button id="clear" class='btn clear-btn'>Clear</button>
     <button id="hide-controls" class="btn controls-btn">Hide</button>

@@ -8,5 +8,7 @@ Skysong::Application.routes.draw do
   get '/clear_session', to: 'pages#clear_session'
   get '/publish', to: 'pages#publish'
   get '/clear', to: 'pages#clear'
+  get '/xkcd', to: 'pages#xkcd'
+  get '/color_diff', to: 'pages#color'
   resources :messages
 end

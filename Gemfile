@@ -20,6 +20,8 @@ gem 'jquery-ui-rails'
 gem "private_pub"
 gem "thin"
 
+gem 'xkcd'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-nav'
