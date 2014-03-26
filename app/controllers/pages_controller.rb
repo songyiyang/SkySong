@@ -95,4 +95,16 @@ class PagesController < ApplicationController
     end
   end
 
+  def send_img
+    data = params[:image]
+    image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
+    File.open("#{Rails.root}/public/uploads/somefilename.png", 'wb') do |f|
+      f.write image_data
+    end
+    #html_stuff = "<h1>Link</h1><p>#{params[:image]}</p>"#"<img src='#{params[:image]}' alt='img'/>"
+    binding.pry
+    Pony.mail(to: current_user.email, subject: "Sky Song Images!", :headers => { 'Content-Type' => 'text/html' }, :attachments => {"somefilename.png" => File.read("#{Rails.root}/public/uploads/somefilename.png")})
+    render json: {:msg => "Success!", :img => html_stuff}
+  end
+
 end

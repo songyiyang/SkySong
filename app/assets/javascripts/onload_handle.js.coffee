@@ -38,6 +38,21 @@ $ ->
     .done (response) ->
       $("#img-stuff").css("background-image", "url('http://imgs.xkcd.com/comics/mattress.png')")
 
+  $("#send-img").click ->
+    canvas = document.getElementById("myCanvas")
+    image = new Image()
+    image.src = canvas.toDataURL("image/png")
+    $.ajax(
+      url: '/send_img'
+      type: 'post'
+      dataType: 'json'
+      data:
+        image: image.src
+    )
+    .done (response) ->
+      SkySong.Msg.drawMsg(response.msg, '.alert', 'green')
+      $('.alert').fadeOut(5000)
+
   if window.location.pathname == '/chat'
     if ($('#draw').position().left + 700) > $('#sharedCanvas').position().left
       $('#sharedCanvas').hide()

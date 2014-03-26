@@ -10,5 +10,6 @@ Skysong::Application.routes.draw do
   get '/clear', to: 'pages#clear'
   get '/xkcd', to: 'pages#xkcd'
   get '/color_diff', to: 'pages#color'
+  post '/send_img', to: 'pages#send_img'
   resources :messages
 end
