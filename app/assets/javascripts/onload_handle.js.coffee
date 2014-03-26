@@ -19,11 +19,14 @@ $ ->
           response.msg
     return
   )
-
-  if $(window).width() < 750
-    wid = $(window).width()-80
-    $("#chat").css("width", wid)
-    $("#input-form").css("width", wid-200)
+  if window.location.pathname == '/chat'
+    if $(window).width() < 750
+      wid = $(window).width()-80
+      $("#chat").css("width", wid)
+      $("#input-form").css("width", wid-200)
+      msg = "Please use Full Screen or change window size( Command + '-' or
+              Ctrl + '-' ) to see the Outputs."
+      SkySong.Msg.drawMsg(msg, '.notice', 'black')
 
   if window.location.pathname == '/'
     $("#img-stuff").empty
@@ -41,8 +44,10 @@ $ ->
     $(window).resize ->
       if (($('#draw').position().left + 700) > $('#sharedCanvas').position().left) && $(window).width() < 1288
         $('#sharedCanvas').hide()
+        SkySong.Msg.drawMsg("Please Use Full Screen or change window size( Command + '-' or Ctrl + '-' ) to see the Outputs.", '.notice', 'black')
       else
         $('#sharedCanvas').show()
+        $('.notice').fadeOut('slow')
       if $(window).width() < 750
         wid = $(window).width()-80
         $("#chat").css("width", wid)
@@ -78,7 +83,7 @@ $ ->
       )
       .done (response) ->
         if response.msg == "Disconnected!"
-          SkySong.Msg.drawMsg(response.msg, '.alert')
+          SkySong.Msg.drawMsg(response.msg, '.alert', 'red')
           $.ajax(
             url: '/clear_session'
             type: 'GET'
@@ -116,7 +121,7 @@ $ ->
       dataType: 'json'
     )
     .done (response) ->
-      SkySong.Msg.drawMsg(response.msg, '.alert')
+      SkySong.Msg.drawMsg(response.msg, '.alert', 'green')
       if response.channel == 2
         window.location = "chat"
       else
@@ -129,7 +134,7 @@ $ ->
           .done (response) ->
             if response.msg == "Connected!"
               $('.alert').fadeOut("fast")
-              SkySong.Msg.drawMsg(response.msg, '.notice')
+              SkySong.Msg.drawMsg(response.msg, '.notice', 'green')
               window.location = "chat"
         , 2000)
 
@@ -137,9 +142,11 @@ $ ->
   $('#chat').bind('DOMNodeInserted', (event) ->
     name = if event.target.getElementsByClassName("skyer_1").length == 0 then event.target.getElementsByClassName("skyer_2") else event.target.getElementsByClassName("skyer_1")
     if $("#myCanvas").css("border-color") == "rgb(41, 128, 185)" && name[0].innerText != "You : " && name[0].getAttribute("class") == "skyer_1"
+      name[0].style.color = 'red'
       name[0].innerText = "You : "
     else if $("#myCanvas").css("border-color") == "rgb(26, 188, 156)" && name[0].innerText != "You : " && name[0].getAttribute("class") == "skyer_2"
       name[0].innerText = "You : "
+      name[0].style.color = 'red'
     $("#chat").animate({scrollTop: $("#chat")[0].scrollHeight}, 1000)
     )
 

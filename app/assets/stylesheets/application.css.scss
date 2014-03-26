@@ -144,10 +144,8 @@ canvas {
   display: none;
   margin: 0 auto;
   padding: 0 10px;
-  width: 30%;
   text-align: center;
-  font-weight: bold;
-  font-size: 20px;
+  font-size: 14px;
   border-radius: 0;
 }
 
@@ -169,8 +167,11 @@ canvas {
   }
 }
 #disconnect {
-  float:right;
-  top:0;
+  position:fixed;
+  right:0;
+  margin-right:15px;
+  top:10;
+  background-color: #d35400;
 }
 
 #sharedCanvas {

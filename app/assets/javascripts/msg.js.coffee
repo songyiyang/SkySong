@@ -1,6 +1,7 @@
 class SkySong.Msg
-  @drawMsg: (message, classType) ->
+  @drawMsg: (message, classType, color) ->
     $(classType).text(message)
+    $(classType).css("color", color)
     if message != "waiting..."
       $(classType).fadeIn('fast')
     else

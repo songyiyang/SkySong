@@ -147,6 +147,8 @@ GEM
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
     polyglot (0.3.4)
+    pony (1.8)
+      mail (>= 2.0)
     private_pub (1.0.3)
       faye
     pry (0.9.12.6)
@@ -205,6 +207,9 @@ GEM
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
+    sendgrid (1.2.0)
+      json
+      json
     shoulda-matchers (2.5.0)
       activesupport (>= 3.0.0)
     simplecov-html (0.8.0)
@@ -264,6 +269,7 @@ DEPENDENCIES
   launchy
   pg
   poltergeist
+  pony
   private_pub
   pry-nav
   pry-rails
@@ -273,6 +279,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
+  sendgrid
   shoulda-matchers
   simplecov!
   thin
