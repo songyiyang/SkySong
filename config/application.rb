@@ -14,5 +14,6 @@ Bundler.require(:default, Rails.env)
 module Skysong
   class Application < Rails::Application
     config.active_record.schema_format = :sql
+    config.paths['app/views'] << "app/views/devise"
   end
 end

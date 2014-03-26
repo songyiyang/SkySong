@@ -20,6 +20,55 @@ body{
 canvas {
   border: 1px solid #000;
 }
+
+#main-h1 {
+  text-align: center;
+  font-family: 'Sofadi One', cursive;
+  color:#d85600;
+  cursor:default;
+}
+
+.main-here {
+  font-size:30px;
+  text-align: center;
+  margin-bottom: 10px;
+  left:50%;
+  position:relative;
+  margin-left: -100px;
+  text-decoration:none;
+  color:#2980b9;
+}
+#get-new-one{
+  text-align: center;
+  margin-top:100px;
+  color:red;
+}
+.border-form-div {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+     -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+          box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+.border-form-div .form-signin-heading,
+.border-form-div .checkbox {
+  margin-bottom: 10px;
+}
+.border-form-div input[type="text"],
+.border-form-div input[type="email"],
+.border-form-div input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}
+
 #sharedCanvas1{
   border: 2px solid #2980b9;
 }
@@ -129,6 +178,7 @@ canvas {
   width: 400px;
   height: 350px;
   background-size: 100% 100%;
+  background-image: url('http://imgs.xkcd.com/comics/mattress.png');
 }
 
 #try-connect {

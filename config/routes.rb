@@ -1,8 +1,9 @@
 Skysong::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
   get '/disconnect', to: 'pages#disconnect'
   get '/connect', to: 'pages#connect'
-  root 'pages#main_page'
+  root 'info#main'
+  get '/main', to:'pages#main_page', as: 'main_path'
   get '/chat', to: 'messages#index'
   get '/check_connect', to: 'pages#check_connect'
   get '/clear_session', to: 'pages#clear_session'
@@ -11,5 +12,6 @@ Skysong::Application.routes.draw do
   get '/xkcd', to: 'pages#xkcd'
   get '/color_diff', to: 'pages#color'
   post '/send_img', to: 'pages#send_img'
+  get '/info', to:'info#main'
   resources :messages
 end

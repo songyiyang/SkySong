@@ -28,16 +28,6 @@ $ ->
               Ctrl + '-' ) to see the Outputs."
       SkySong.Msg.drawMsg(msg, '.notice', 'black')
 
-  if window.location.pathname == '/'
-    $("#img-stuff").empty
-    $.ajax(
-      url: "/xkcd"
-      type: 'GET'
-      dataType: 'json'
-    )
-    .done (response) ->
-      $("#img-stuff").css("background-image", "url('http://imgs.xkcd.com/comics/mattress.png')")
-
   $("#send-img").click ->
     canvas1 = document.getElementById("sharedCanvas1")
     canvas2 = document.getElementById("sharedCanvas2")
