@@ -121,6 +121,13 @@ canvas {
   height: 5px;
 }
 
+#send-img {
+  float:right;
+}
+
+#send-img:hover{
+  background-color:#3498db;
+}
 #pen-size {
   height: 100px;
   width:200px;
@@ -166,7 +173,7 @@ canvas {
   text-align: center;
   position:absolute;
   left: 50%;
-  margin-left: -130px;
+  margin-left: -120px;
   background-color: #2ecc71;
   width:15em;
   height:2em;
@@ -175,11 +182,11 @@ canvas {
 }
 
 #img-stuff {
-  margin-left: -200px;
+  margin-left: -250px;
   left:50%;
   position:absolute;
-  width: 400px;
-  height: 350px;
+  width: 500px;
+  height: 450px;
   background-size: 100% 100%;
   background-image: url('http://imgs.xkcd.com/comics/mattress.png');
 }
@@ -210,6 +217,8 @@ canvas {
 h1{
   font-family:fantasy;
 }
+
+
 #chat-stuff {
   display:inline-block;
   margin-top: 50px;

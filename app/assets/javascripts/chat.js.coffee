@@ -19,6 +19,7 @@ class SkySong.Chat
     if (($('#draw').position().left + 700) > $('#sharedCanvas').position().left) && $(window).width() < 1288
       $('#sharedCanvas').hide()
       SkySong.Msg.drawMsg("Please Use Full Screen or change window size( Command + '-' or Ctrl + '-' ) to see the Outputs.", '.notice', 'black')
+      $("html, body").animate({ scrollTop: 0 }, "slow")
     else
       $('#sharedCanvas').show()
       $('.notice').fadeOut('slow')
@@ -72,7 +73,7 @@ class SkySong.Chat
     $("#controls").show()
     $("#show-controls").hide()
     $("#hide-controls").show()
-    $("html, body").animate({ scrollTop: $(document).height() }, "slow")
+    $("html, body").animate({ scrollTop: $(document).height() }, 1500)
 
   @pageHideListener: ->
     $("#controls").hide()
@@ -104,6 +105,7 @@ class SkySong.Chat
     .done (response) ->
       SkySong.Msg.drawMsg(response.msg, '.alert', 'green')
       $('.alert').fadeOut(5000)
+      $("html, body").animate({ scrollTop: 0 }, "slow")
 
   @chatDomListener: (event) ->
     name = if event.target.getElementsByClassName("skyer_1").length == 0 then event.target.getElementsByClassName("skyer_2") else event.target.getElementsByClassName("skyer_1")
