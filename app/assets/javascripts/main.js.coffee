@@ -10,6 +10,7 @@ class SkySong.Main
       if response.channel == 2
         window.location = "chat"
       else
+        $("#connect").text("Waiting...")
         setInterval(->
           $.ajax(
             url: '/check_connect'
