@@ -15,5 +15,6 @@ module Skysong
   class Application < Rails::Application
     config.active_record.schema_format = :sql
     config.paths['app/views'] << "app/views/devise"
+    config.time_zone = 'Eastern Time (US & Canada)'
   end
 end
