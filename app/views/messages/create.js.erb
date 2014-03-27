@@ -1,4 +1,3 @@
-
 <% if @channel_num %>
   <% publish_to "/messages/#{@channel_num}" do %>
     $("#chat").append("<%= j render(@message) %>");
