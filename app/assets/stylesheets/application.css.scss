@@ -61,21 +61,21 @@ canvas {
   position:relative;
 }
 #info-3-div{
-  width:200px;
-  height:300px;
+  width:700px;
+  height:380px;
   background-image: image-url("skyers.png");
   background-size:100%;
 }
 .main-here-btn {
-  top:30px;
+  bottom:40px;
   right:30px;
   font-size:20px;
   text-align: center;
-  background-color: #2980b9;
+  background-color: #e67e22;
   position:fixed;
 }
 .main-here-btn:hover {
-  background-color:#e67e22;
+  background-color:green;
 }
 #get-new-one{
   text-align: center;
