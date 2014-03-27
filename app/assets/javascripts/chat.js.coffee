@@ -18,8 +18,10 @@ class SkySong.Chat
   @windowResizeListener: ->
     if (($('#draw').position().left + 700) > $('#sharedCanvas').position().left) && $(window).width() < 1288
       $('#sharedCanvas').hide()
-      SkySong.Msg.drawMsg("Please Use Full Screen or change window size( Command + '-' or Ctrl + '-' ) to see the Outputs.", '.notice', 'gray')
-      $("html, body").animate({ scrollTop: 0 }, "slow")
+      msg = "Please Use Full Screen or change window size( Command + '-' or Ctrl + '-' ) to see the Outputs."
+      if ($('.notice')).text() != msg
+        $("html, body").animate({ scrollTop: 0 }, "slow")
+      SkySong.Msg.drawMsg(msg, '.notice', 'gray')
     else
       $('#sharedCanvas').show()
       $('.notice').fadeOut('slow')
