@@ -16,6 +16,6 @@ module Skysong
     config.active_record.schema_format = :sql
     config.paths['app/views'] << "app/views/devise"
     config.time_zone = 'Eastern Time (US & Canada)'
-    config.active_record.default_timezone = :local
+    config.active_record.default_timezone = 'Eastern Time (US & Canada)'
   end
 end
