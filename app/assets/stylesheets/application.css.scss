@@ -81,6 +81,7 @@ canvas {
   text-align: center;
   background-color: #e67e22;
   position:fixed;
+  z-index:2;
 }
 .main-here-btn:hover {
   background-color:green;

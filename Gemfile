@@ -23,7 +23,6 @@ gem "thin"
 
 gem 'xkcd'
 
-gem 'pony'
 gem 'sendgrid'
 
 group :development, :test do
