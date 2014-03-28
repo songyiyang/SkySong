@@ -119,5 +119,19 @@ class SkySong.Chat
       name[0].style.color = 'red'
     $("#chat").animate({scrollTop: $("#chat")[0].scrollHeight}, 1000)
 
+  @sendClickListener: ->
+    msg = $('#input-form').val()
+    $('#input-form').val('')
+    $.ajax(
+      url: '/messages'
+      type: 'post'
+      dataType: 'json'
+      data:
+        content: msg
+    )
+
+  @inputEnterListener: (event) ->
+    if (event.which == 13 || event.keyCode == 13)
+      SkySong.Chat.sendClickListener()
 
 

@@ -6,10 +6,8 @@
   <h4 id="chat-msg"><span id='title-msg'></span>you can check out anytime you like, but you can never back!</h4>
 
   <div id='form-for'>
-  <%= form_for Message.new, remote: true do |f| %>
-    <%= f.text_field :content, :id => 'input-form' %>
-    <%= f.submit "Send", :class => 'btn send-btn' %>
-  <% end %>
+    <input id='input-form'/>
+    <button class='btn send-btn'>Send</button>
   </div>
 </div>
 

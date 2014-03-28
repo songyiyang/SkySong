@@ -12,7 +12,8 @@ $ ->
     $("#disconnect").click(SkySong.Chat.disconnectListener)
     $("#send-img").click(SkySong.Chat.sendImgListener)
     $('#chat').bind('DOMNodeInserted', SkySong.Chat.chatDomListener)
-    #$('')
+    $('.send-btn').click(SkySong.Chat.sendClickListener)
+    $('#input-form').keypress(SkySong.Chat.inputEnterListener)
   else if window.location.pathname == '/main'
     $("#connect").click(SkySong.Main.connectListener)
 
