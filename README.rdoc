@@ -4,14 +4,14 @@ Draw and Chat with strangers!
 
   1.Do bundle to install the gems
 
-<tt>bundle install</tt>
+    <tt>bundle install</tt>
 
   2.Run it locally, first start rails server:
 
-<tt>rails server</tt>
+    <tt>rails server</tt>
 
   3.Then start the fake server:
 
-<tt>rackup private_pub.ru -s thin -E production</tt>
+    <tt>rackup private_pub.ru -s thin -E production</tt>
 
   4.Last create multiple user to draw with yourself!
