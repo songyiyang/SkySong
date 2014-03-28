@@ -61,15 +61,17 @@ canvas {
   background-size:100%;
 }
 #info-3{
-  left: 10%;
+  left: 15%;
   float:left;
   margin-top:90px;
   position:relative;
+  margin-right:600px;
 }
 #info-3-div{
-  width:700px;
-  height:380px;
+  width:800px;
+  height:480px;
   background-image: image-url("skyers.png");
+  background-repeat:no-repeat;
   background-size:100%;
 }
 .main-here-btn {
