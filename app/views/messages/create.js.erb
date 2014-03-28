@@ -1,6 +1,6 @@
-<% if @channel_num %>
+$("#new_message")[0].reset();
+<% if @channel_num && @message.content != '' %>
   <% publish_to "/messages/#{@channel_num}" do %>
     $("#chat").append("<%= j render(@message) %>");
   <% end %>
 <% end %>
-$("#new_message")[0].reset();
