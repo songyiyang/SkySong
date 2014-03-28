@@ -1,16 +1,17 @@
 == SkySong
 
-Draw and Chat with strangers!
+  Draw and Chat with strangers!
 
-Do bundle to install the gems
+*Do bundle to install the gems
 
 <tt>bundle install</tt>
 
-Run it locally, first start rails server:
+*Run it locally, first start rails server:
 
 <tt>rails server</tt>
 
-Then start the fake server:
+*Then start the fake server:
+
 <tt>rackup private_pub.ru -s thin -E production</tt>
 
-Last create multiple user to draw with yourself!
+*Last create multiple user to draw with yourself!
