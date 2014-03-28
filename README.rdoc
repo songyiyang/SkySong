@@ -1,28 +1,17 @@
-== README
+== SkySong
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Draw and Chat with strangers!
 
-Things you may want to cover:
+1.Do bundle to install the gems
 
-* Ruby version
+<tt>bundle install</tt>
 
-* System dependencies
+2.Run it locally, first start rails server:
 
-* Configuration
+<tt>rails server</tt>
 
-* Database creation
+3.Then start the fake server:
 
-* Database initialization
+<tt>rackup private_pub.ru -s thin -E production</tt>
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+4.Last create multiple user to draw with yourself!
