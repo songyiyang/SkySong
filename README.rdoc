@@ -1,6 +1,6 @@
 == SkySong
 
-  Draw and Chat with strangers!
+Draw and Chat with strangers!
 
 *Do bundle to install the gems
 
