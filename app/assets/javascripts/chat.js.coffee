@@ -1,22 +1,22 @@
 class SkySong.Chat
 
   @pageInit: ->
-    $("#hide-controls").hide()
-    $("#controls").hide()
+    $(".hide-controls-btn").hide()
+    $(".controls").hide()
 
   @windowInitListener: ->
     if $(window).width() < 750
       wid = $(window).width()-80
-      $("#chat").css("width", wid)
-      $("#input-form").css("width", wid-200)
+      $(".chat").css("width", wid)
+      $(".input-form").css("width", wid-200)
       msg = "Please use Full Screen or change window size( Command + '-' or
               Ctrl + '-' ) to see the Outputs."
       SkySong.Msg.drawMsg(msg, '.notice', 'gray')
-    if ($('#draw').position().left + 700) > $('#sharedCanvas').position().left
+    if ($('.draw').position().left + 700) > $('#sharedCanvas').position().left
       $('#sharedCanvas').hide()
 
   @windowResizeListener: ->
-    if (($('#draw').position().left + 700) > $('#sharedCanvas').position().left) && $(window).width() < 1288
+    if (($('.draw').position().left + 700) > $('#sharedCanvas').position().left) && $(window).width() < 1288
       $('#sharedCanvas').hide()
       msg = "Please Use Full Screen or change window size( Command + '-' or Ctrl + '-' ) to see the Outputs."
       if ($('.notice')).text() != msg
@@ -27,10 +27,10 @@ class SkySong.Chat
       $('.notice').fadeOut('slow')
     if $(window).width() < 750
       wid = $(window).width()-80
-      $("#chat").css("width", wid)
-      $("#input-form").css("width",$(window).width()-280)
+      $(".chat").css("width", wid)
+      $(".input-form").css("width",$(window).width()-280)
     else
-      $("#chat").css("width", "100%")
+      $(".chat").css("width", "100%")
 
   @userInitDiff: ->
     $.ajax(
@@ -40,9 +40,9 @@ class SkySong.Chat
     )
     .done (response) ->
       color = ""
-      $("#chat").css("border", "2px solid #{response.color}")
+      $(".chat").css("border", "2px solid #{response.color}")
       $("#myCanvas").css("border", "2px solid #{response.color}")
-      $("#input-form").css("border", "2px solid #{response.color}")
+      $(".input-form").css("border", "2px solid #{response.color}")
       $(".send-btn").css("background", "#{response.color}")
       if response.color == "#1abc9c"
         color = "Greener"
@@ -72,15 +72,15 @@ class SkySong.Chat
     , 2000)
 
   @pageShowListener: ->
-    $("#controls").show()
-    $("#show-controls").hide()
-    $("#hide-controls").show()
+    $(".controls").show()
+    $(".show-controls-btn").hide()
+    $(".hide-controls-btn").show()
     $("html, body").animate({ scrollTop: $(document).height() }, 1500)
 
   @pageHideListener: ->
-    $("#controls").hide()
-    $("#hide-controls").hide()
-    $("#show-controls").show()
+    $(".controls").hide()
+    $(".hide-controls-btn").hide()
+    $(".show-controls-btn").show()
 
   @disconnectListener: ->
     $.ajax(
@@ -117,11 +117,11 @@ class SkySong.Chat
     else if $("#myCanvas").css("border-color") == "rgb(26, 188, 156)" && name[0].innerText != "You : " && name[0].getAttribute("class") == "skyer_2"
       name[0].innerText = "You : "
       name[0].style.color = 'red'
-    $("#chat").animate({scrollTop: $("#chat")[0].scrollHeight}, 1000)
+    $(".chat").animate({scrollTop: $(".chat")[0].scrollHeight}, 1000)
 
   @sendClickListener: ->
-    msg = $('#input-form').val()
-    $('#input-form').val('')
+    msg = $('.input-form').val()
+    $('.input-form').val('')
     $.ajax(
       url: '/messages'
       type: 'post'

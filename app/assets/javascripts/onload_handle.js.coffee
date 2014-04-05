@@ -1,21 +1,23 @@
 $ ->
-  $(window).on('beforeunload', SkySong.Utilities.unloadCheck)
+  #$(window).on('beforeunload', SkySong.Utilities.unloadCheck)
 
-  if window.location.pathname == '/chat'
+  if window.location.pathname == '/chat' || window.location.pathname == '/chat_together'
     SkySong.Chat.pageInit()
     SkySong.Chat.userInitDiff()
-    SkySong.Chat.windowInitListener()
+    if window.location.pathname == '/chat'
+      SkySong.Chat.windowInitListener()
     SkySong.Chat.pageConnectionCheck()
     $(window).resize(SkySong.Chat.windowResizeListener)
-    $("#show-controls").click(SkySong.Chat.pageShowListener)
-    $("#hide-controls").click(SkySong.Chat.pageHideListener)
-    $("#disconnect").click(SkySong.Chat.disconnectListener)
-    $("#send-img").click(SkySong.Chat.sendImgListener)
-    $('#chat').bind('DOMNodeInserted', SkySong.Chat.chatDomListener)
+    $(".show-controls-btn").click(SkySong.Chat.pageShowListener)
+    $(".hide-controls-btn").click(SkySong.Chat.pageHideListener)
+    $(".disconnect-btn").click(SkySong.Chat.disconnectListener)
+    $(".sendimg-btn").click(SkySong.Chat.sendImgListener)
+    $('.chat').bind('DOMNodeInserted', SkySong.Chat.chatDomListener)
     $('.send-btn').click(SkySong.Chat.sendClickListener)
-    $('#input-form').keypress(SkySong.Chat.inputEnterListener)
+    $('.input-form').keypress(SkySong.Chat.inputEnterListener)
   else if window.location.pathname == '/main'
     $("#connect").click(SkySong.Main.connectListener)
+    $("#draw-together").click(SkySong.Main.togetherListener)
 
   checkOffset = (event) ->
     unless event.hasOwnProperty("offsetX")

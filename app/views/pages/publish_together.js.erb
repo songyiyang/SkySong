@@ -1,15 +1,15 @@
-
-<% publish_to "/chat/publish_together" do %>
-
-var canvas = document.getElementById('togetherCanvas');
-var context = canvas.getContext('2d');
-context.beginPath();
-context.moveTo(<%=@prev[0]%>, <%=@prev[1]%>);
-context.lineTo(<%=@line_to[0] %>, <%=@line_to[1]%>);
-context.lineWidth = <%=@line_width %>
-context.lineCap = "round"
-context.strokeStyle = "<%= @line_color %>"
-context.stroke();
-context.beginPath();
-context.moveTo(<%=@line_to[0] %>, <%=@line_to[1]%>);
+<% if @channel_num %>
+  <% publish_to "/chat/#{@channel_num}" do %>
+    canvas = document.getElementById('togetherCanvas');
+    var context = canvas.getContext('2d');
+    context.beginPath();
+    context.moveTo(<%=@prev[0]%>, <%=@prev[1]%>);
+    context.lineTo(<%=@line_to[0] %>, <%=@line_to[1]%>);
+    context.lineWidth = <%=@line_width %>
+    context.lineCap = "round"
+    context.strokeStyle = "<%= @line_color %>"
+    context.stroke();
+    context.beginPath();
+    context.moveTo(<%=@line_to[0] %>, <%=@line_to[1]%>);
+  <% end %>
 <% end %>

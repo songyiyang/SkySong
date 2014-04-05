@@ -2,11 +2,11 @@
 
 <div id='chat-stuff'>
   <h1>Chat</h1>
-  <ul id="chat"></ul>
+  <ul id="chat" class="chat"></ul>
   <h4 id="chat-msg"><span id='title-msg'></span>you can check out anytime you like, but you can never back!</h4>
 
   <div id='form-for'>
-    <input id='input-form'/>
+    <input class='input-form'/>
     <button class='btn send-btn'>Send</button>
   </div>
 </div>
@@ -14,12 +14,12 @@
 <div id="draw">
   <h1>Draw</h1>
   <canvas id="myCanvas" width="700" height="500"></canvas>
-  <div id="buttons">
+  <div class="buttons">
     <button id="clear" class='btn clear-btn'>Clear</button>
-    <button id="hide-controls" class="btn controls-btn">Hide Palette</button>
-    <button id="show-controls" class="btn controls-btn">Show Palette!</button>
+    <button id="hide-controls" class="btn hide-controls-btn">Hide Palette</button>
+    <button id="show-controls" class="btn show-controls-btn">Show Palette!</button>
   </div>
-  <div id='controls'>
+  <div class='controls'>
     <div id='pen-color' class='inline'>
       <ul id='colors'>
         <li id='tomato'></li>
@@ -27,7 +27,7 @@
         <li id='#34495e' class='wetasphalt'></li>
         <li id="#bdc3c7" class='silver'></li>
         <li id='#2980b9' class='belizehole'></li>
-        <li id='orange'></li>
+        <li class='orange'></li>
         <li id='#f1c40f' class='sunflower'></li>
         <li id="#8e44ad" class='westeria'></li>
       </ul>
@@ -39,16 +39,12 @@
   </div>
 </div>
 
-<canvas id="togetherCanvas" width="300" height="300"></canvas>
-
 <ul id="sharedCanvas">
   <button id="send-img" class="btn sendimg-btn">Send to Me!</button>
   <h1>Skyers</h1>
   <li><canvas id="sharedCanvas1" width="350" height="250"></canvas></li>
   <li><canvas id="sharedCanvas2" width="350" height="250"></canvas></li>
 </ul>
-
-
 
 <div id="subscribe">
   <% if @channel_num %>

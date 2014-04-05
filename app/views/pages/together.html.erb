@@ -1,5 +1,46 @@
+<button id="disconnect" class='btn disconnect-btn'>Disconnect</button>
 
-<canvas id="togetherCanvas" width="700" height="500"></canvas>
+<div id='chat-stuff'>
+  <h1>Chat</h1>
+  <ul id="chat" class="chat"></ul>
+  <h4 id="chat-msg"><span id='title-msg'></span>you can check out anytime you like, but you can never back!</h4>
+
+  <div id='form-for'>
+    <input class='input-form'/>
+    <button class='btn send-btn'>Send</button>
+  </div>
+</div>
+<div class="draw">
+  <h1>Draw</h1>
+	<canvas id="togetherCanvas" width="700" height="500"></canvas>
+	  <div class="buttons">
+    <button id="clear" class='btn clear-btn'>Clear</button>
+    <button class="btn hide-controls-btn">Hide Palette</button>
+    <button class="btn show-controls-btn">Show Palette!</button>
+  </div>
+  <div class='controls'>
+    <div class='inline'>
+      <ul id='colors'>
+        <li id='tomato'></li>
+        <li id='#1abc9c' class='turquoise'></li>
+        <li id='#34495e' class='wetasphalt'></li>
+        <li id="#bdc3c7" class='silver'></li>
+        <li id='#2980b9' class='belizehole'></li>
+        <li class='orange'></li>
+        <li id='#f1c40f' class='sunflower'></li>
+        <li id="#8e44ad" class='westeria'></li>
+      </ul>
+    </div>
+    <div id='pen-size' class='inline'>
+      <div id='pen' class='inline'><span id='picker'>Picker</span><span id='size-preview' class='inline'></span></div>
+      <input type='range' min='2' max='40' step='1' class='inline' id='size-slider'>
+    </div>
+  </div>
+</div>
+
 <div id="subscribe">
-  <%= subscribe_to "/chat/publish_together" %>
+	<% if @channel_num %>
+		<%= subscribe_to "/messages/#{@channel_num}" %>
+  	<%= subscribe_to "/chat/#{@channel_num}" %>
+  <% end %>
 </div>

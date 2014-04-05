@@ -131,7 +131,7 @@ canvas {
   border: 2px solid #1abc9c;
 }
 
-#controls ul {
+.controls ul {
   list-style-type: none;
   padding: 0;
 }
@@ -173,12 +173,12 @@ canvas {
   height: 5px;
 }
 
-#send-img {
+.sendimg-btn {
   margin-top:20px;
   float:right;
 }
 
-#send-img:hover{
+.sendimg-btn:hover{
   background-color:#3498db;
 }
 #pen-size {
@@ -203,7 +203,7 @@ canvas {
   background-color: #bdc3c7;
 }
 
-#orange {
+.orange {
   background: orange;
 }
 
@@ -283,12 +283,12 @@ h1{
   position:absolute;
   margin-left:auto;
   left:30px;
-  #chat{
+  .chat{
     width:100%;
     height:100px;
   }
 }
-#disconnect {
+.disconnect-btn {
   z-index:1;
   position:fixed;
   right:0;
@@ -296,7 +296,7 @@ h1{
   bottom:20px;
   background-color: #d35400;
 }
-#disconnect:hover{
+.disconnect-btn:hover{
   background-color:red;
 }
 
@@ -308,14 +308,20 @@ h1{
   top:20px;
 }
 
-#input-form{
+#togetherCanvas {
+  position:absolute;
+  bottom:20px;
+  left:30px;
+}
+
+.input-form{
   width:500px;
   height:40px;
   background-color:#ecf0f1;
   border-color:#34495e;
 }
 
-#draw {
+.draw {
   margin-bottom:20px;
   float:left;
   margin-top:300px;
@@ -326,14 +332,14 @@ h1{
 #myCanvas{
   cursor: image-url("Pencil.cur"), auto;
 }
-#buttons{
+.buttons{
   #clear{
     background-color:#c0392b;
   }
-  #hide-controls{
+  .hide-controls-btn{
     background-color:#7f8c8d;
   }
-  #show-controls{
+  .show-controls-btn{
     background-color: #27ae60;
   }
 }
