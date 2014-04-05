@@ -13,5 +13,7 @@ Skysong::Application.routes.draw do
   get '/color_diff', to: 'pages#color'
   post '/send_img', to: 'pages#send_img'
   get '/info', to:'info#main'
+  get '/chat_together', to: 'pages#together'
+  get '/publish_together', to: 'pages#publish_together'
   resources :messages
 end

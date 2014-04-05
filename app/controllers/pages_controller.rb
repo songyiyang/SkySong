@@ -102,4 +102,16 @@ class PagesController < ApplicationController
     render json: {:msg => "Success!"}
   end
 
+  def together
+
+  end
+
+  def publish_together
+    @line_to = params[:line_to]
+    @prev = params[:prev]
+    @line_width = params[:line_width]
+    @line_color = params[:line_color]
+    PrivatePub.publish_to("/chat/publish_together", "")
+  end
+
 end
