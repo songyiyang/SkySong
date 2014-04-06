@@ -27,12 +27,12 @@ $ ->
   penColor = "tomato"
   penSize = 5
   setPenColor = (event) ->
-    $('#togetherCanvas').css("cursor", "url(assets/Pencil.cur), auto")
+    $('#togetherCanvas').css("cursor", "url(<%= asset_path('Pencil.cur') %>), auto")
     penColor = event.target.id
     $("#size-preview").css background: penColor
     if event.target.id == "#ecf0f1"
       $("#size-preview").css background: 'black'
-      $('#togetherCanvas').css("cursor", "url(assets/eraser.cur), auto")
+      $('#togetherCanvas').css("cursor", "url(<%= asset_path('eraser.cur') %>), auto")
     return
 
   setPenSize = (event) ->
