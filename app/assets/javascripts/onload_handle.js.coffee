@@ -1,12 +1,12 @@
 $ ->
-  #$(window).on('beforeunload', SkySong.Utilities.unloadCheck)
+  $(window).on('beforeunload', SkySong.Utilities.unloadCheck)
 
   if window.location.pathname == '/chat' || window.location.pathname == '/chat_together'
     SkySong.Chat.pageInit()
     SkySong.Chat.userInitDiff()
     if window.location.pathname == '/chat'
       SkySong.Chat.windowInitListener()
-    #SkySong.Chat.pageConnectionCheck()
+    SkySong.Chat.pageConnectionCheck()
     $(window).resize(SkySong.Chat.windowResizeListener)
     $(".show-controls-btn").click(SkySong.Chat.pageShowListener)
     $(".hide-controls-btn").click(SkySong.Chat.pageHideListener)
