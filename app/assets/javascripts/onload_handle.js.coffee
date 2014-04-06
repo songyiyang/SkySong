@@ -6,7 +6,7 @@ $ ->
     SkySong.Chat.userInitDiff()
     if window.location.pathname == '/chat'
       SkySong.Chat.windowInitListener()
-    SkySong.Chat.pageConnectionCheck()
+    #SkySong.Chat.pageConnectionCheck()
     $(window).resize(SkySong.Chat.windowResizeListener)
     $(".show-controls-btn").click(SkySong.Chat.pageShowListener)
     $(".hide-controls-btn").click(SkySong.Chat.pageHideListener)
@@ -27,8 +27,12 @@ $ ->
   penColor = "tomato"
   penSize = 5
   setPenColor = (event) ->
+    $('#togetherCanvas').css("cursor", "url(assets/Pencil.cur), auto")
     penColor = event.target.id
     $("#size-preview").css background: penColor
+    if event.target.id == "#ecf0f1"
+      $("#size-preview").css background: 'black'
+      $('#togetherCanvas').css("cursor", "url(assets/eraser.cur), auto")
     return
 
   setPenSize = (event) ->
@@ -103,6 +107,8 @@ $ ->
 
 
   if window.location.pathname == '/chat_together'
+    $("#colors").click setPenColor
+    $("#size-slider").mouseup setPenSize
     canvas = document.getElementById("togetherCanvas")
     context = canvas.getContext("2d")
     dragging = false

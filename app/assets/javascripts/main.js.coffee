@@ -10,7 +10,9 @@ class SkySong.Main
       if response.channel == 2
         window.location = "chat"
       else
+        $('#draw-together').hide('fast')
         $("#connect").text("Waiting...")
+        $('#connect').css('margin-left', '-153px')
         setInterval(->
           $.ajax(
             url: '/check_connect'
@@ -26,7 +28,7 @@ class SkySong.Main
 
   @togetherListener: ->
     $.ajax(
-      url: '/connect'
+      url: '/connect_together'
       type: 'GET'
       dataType: 'json'
     )
@@ -35,7 +37,9 @@ class SkySong.Main
       if response.channel == 2
         window.location = "chat_together"
       else
-        $("#connect").text("Waiting...")
+        $('#connect').hide('fast')
+        $("#draw-together").text("Waiting...")
+        $('#draw-together').css('margin-left', '-153px')
         setInterval(->
           $.ajax(
             url: '/check_connect'

@@ -37,6 +37,27 @@ class PagesController < ApplicationController
     render :json => msg
   end
 
+  def connect_together
+    msg = {}
+    if current_user.check != 1 && current_user.check != 2
+      channel = Channel.where("channel = 3")
+      if channel == []
+        channel_con = Channel.create(user_1: current_user.id, channel: 3)
+        current_user.check = 1
+        msg = {"msg" => "waiting...", "channel" => channel_con.channel}
+      else
+        channel_con = channel.first
+        channel_con.channel = 2
+        channel_con.user_2 = current_user.id
+        current_user.check = 2
+        channel_con.save!
+        msg = {"msg" => "Connected!", "channel" => channel_con.channel}
+      end
+      current_user.save!
+    end
+    render :json => msg
+  end
+
   def check_connect
     channel_con = Channel.where("(user_1 = #{current_user.id} OR user_2 = #{current_user.id}) AND channel = 2")
     if channel_con == []

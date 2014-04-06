@@ -111,10 +111,10 @@ class SkySong.Chat
 
   @chatDomListener: (event) ->
     name = if event.target.getElementsByClassName("skyer_1").length == 0 then event.target.getElementsByClassName("skyer_2") else event.target.getElementsByClassName("skyer_1")
-    if $("#myCanvas").css("border-color") == "rgb(41, 128, 185)" && name[0].innerText != "You : " && name[0].getAttribute("class") == "skyer_1"
+    if $(".chat").css("border-color") == "rgb(41, 128, 185)" && name[0].innerText != "You : " && name[0].getAttribute("class") == "skyer_1"
       name[0].style.color = 'red'
       name[0].innerText = "You : "
-    else if $("#myCanvas").css("border-color") == "rgb(26, 188, 156)" && name[0].innerText != "You : " && name[0].getAttribute("class") == "skyer_2"
+    else if $(".chat").css("border-color") == "rgb(26, 188, 156)" && name[0].innerText != "You : " && name[0].getAttribute("class") == "skyer_2"
       name[0].innerText = "You : "
       name[0].style.color = 'red'
     $(".chat").animate({scrollTop: $(".chat")[0].scrollHeight}, 1000)

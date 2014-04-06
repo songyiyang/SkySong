@@ -15,5 +15,6 @@ Skysong::Application.routes.draw do
   get '/info', to:'info#main'
   get '/chat_together', to: 'pages#together'
   get '/publish_together', to: 'pages#publish_together'
+  get '/connect_together', to: 'pages#connect_together'
   resources :messages
 end
