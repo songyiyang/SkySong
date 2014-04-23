@@ -92,7 +92,7 @@ $ ->
       false
 
     document.getElementById("clear").addEventListener "click", (->
-      context2.clearRect 0, 0, canvas.width, canvas.height
+      context.clearRect 0, 0, canvas.width, canvas.height
       $.ajax(
         url: '/clear'
         type: 'GET'
@@ -100,8 +100,8 @@ $ ->
       )
       .done (response) ->
         theCanvas = document.getElementById("sharedCanvas#{response.canvas}")
-        context2 = theCanvas.getcontext2("2d")
-        context2.clearRect 0, 0, theCanvas.width, theCanvas.height
+        context = theCanvas.getContext("2d")
+        context.clearRect 0, 0, theCanvas.width, theCanvas.height
       return
     ), false
 
